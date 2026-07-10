@@ -5,7 +5,6 @@ const words = ["Kamada", "Sri", "Hari", "Siva", "Tejash"];
 export function Hero() {
   return (
     <section id="top" className="relative mx-auto mb-32 max-w-7xl overflow-hidden px-6">
-      {/* Decorative gradient blob */}
       <motion.div
         aria-hidden
         initial={{ opacity: 0, scale: 0.8 }}
@@ -26,7 +25,7 @@ export function Hero() {
             <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
           </span>
           <span className="text-[10px] font-semibold uppercase tracking-widest text-accent">
-            CSE Undergrad @ VIIT Visakhapatnam
+            Open to Internships · Available Now
           </span>
         </motion.div>
 
@@ -57,7 +56,7 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.7 }}
           className="max-w-[52ch] font-mono text-sm uppercase tracking-widest text-foreground/70"
         >
-          Software Developer · AI Enthusiast · Problem Solver
+          Third-year CS Student · AI Full Stack Engineer Intern
         </motion.p>
 
         <motion.p
@@ -66,9 +65,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.85 }}
           className="max-w-[58ch] text-pretty text-lg leading-relaxed text-muted-foreground md:text-xl"
         >
-          Building AI-integrated applications and browser extensions that solve real-world
-          problems. Proficient in C++, Java, Python and full-stack web development. Open to
-          internships and collaborative projects.
+          Hands-on across the MERN stack, Java and Python. I ship full-stack applications
+          end-to-end — from REST API architecture to production deployment — with a strong
+          foundation in DSA and OOP.
         </motion.p>
 
         <motion.div

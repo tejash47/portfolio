@@ -45,25 +45,45 @@ const certs = [
   },
 ];
 
+import { motion } from "framer-motion";
+import { Award, ExternalLink, BadgeCheck } from "lucide-react";
+import { Reveal, Stagger, item } from "./Reveal";
+
 export function Credentials() {
   return (
     <section id="certifications" className="mx-auto mb-32 max-w-7xl px-6">
-      <div className="mb-12 flex items-baseline justify-between border-b border-foreground/5 pb-6">
-        <h2 className="font-display text-3xl font-medium tracking-tight">
-          Certifications & Achievements
-        </h2>
-        <span className="font-mono text-sm text-muted-foreground/70">[ what I've learned ]</span>
-      </div>
+      <Reveal>
+        <div className="mb-12 flex items-baseline justify-between border-b border-foreground/5 pb-6">
+          <h2 className="flex items-center gap-3 font-display text-3xl font-medium tracking-tight">
+            <BadgeCheck className="size-6 text-accent" strokeWidth={1.75} />
+            Certifications & Achievements
+          </h2>
+          <span className="font-mono text-sm text-muted-foreground/70">[ what I've learned ]</span>
+        </div>
+      </Reveal>
 
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+      <Stagger className="grid grid-cols-1 gap-6 md:grid-cols-3">
         {certs.map((c) => (
-          <div
+          <motion.div
             key={c.title}
-            className="flex flex-col gap-4 rounded-sm border border-foreground/10 bg-card p-6 transition-colors hover:border-accent"
+            variants={item}
+            whileHover={{ y: -6 }}
+            transition={{ type: "spring", stiffness: 260, damping: 22 }}
+            className="group relative flex flex-col gap-4 overflow-hidden rounded-sm border border-foreground/10 bg-card p-6 transition-colors hover:border-accent"
           >
-            <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
-              {c.date}
-            </span>
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -right-8 -top-8 h-24 w-24 rounded-full bg-accent/10 opacity-0 blur-2xl transition-opacity group-hover:opacity-100"
+            />
+            <div className="flex items-start justify-between">
+              <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground/70">
+                {c.date}
+              </span>
+              <Award
+                className="size-5 text-accent/60 transition-transform group-hover:scale-110 group-hover:text-accent"
+                strokeWidth={1.75}
+              />
+            </div>
             <h4 className="font-display text-lg font-medium text-foreground">{c.title}</h4>
             <p className="text-sm leading-relaxed text-muted-foreground">{c.detail}</p>
             <div className="mt-auto flex flex-wrap gap-3 pt-2">
@@ -73,15 +93,16 @@ export function Credentials() {
                   href={l.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-xs font-semibold uppercase tracking-widest text-accent hover:underline"
+                  className="inline-flex items-center gap-1 text-xs font-semibold uppercase tracking-widest text-accent hover:underline"
                 >
-                  {l.label} →
+                  {l.label}
+                  <ExternalLink className="size-3" strokeWidth={2.25} />
                 </a>
               ))}
             </div>
-          </div>
+          </motion.div>
         ))}
-      </div>
+      </Stagger>
     </section>
   );
 }

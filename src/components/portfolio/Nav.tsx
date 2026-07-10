@@ -2,8 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { ThemeToggle } from "./ThemeToggle";
 
 const navLinks = [
-  { hash: "about", label: "About" },
-  { hash: "education", label: "Education" },
+  { hash: "experience", label: "Experience" },
   { hash: "projects", label: "Projects" },
   { hash: "skills", label: "Skills" },
   { hash: "certifications", label: "Certifications" },
