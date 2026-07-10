@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Nav } from "@/components/portfolio/Nav";
 import { Footer } from "@/components/portfolio/Contact";
 import { Reveal, Stagger, item } from "@/components/portfolio/Reveal";
-import { GalleryCarousel } from "@/components/portfolio/GalleryCarousel";
 import { getProject, projects } from "@/data/projects";
 
 export const Route = createFileRoute("/projects/$slug")({
@@ -118,22 +117,6 @@ function ProjectDetail() {
                 </motion.div>
               ))}
             </Stagger>
-          )}
-
-          {project.gallery && project.gallery.length > 0 && (
-            <section className="mt-20">
-              <Reveal>
-                <div className="mb-6 flex items-baseline justify-between border-b border-foreground/5 pb-3">
-                  <h2 className="font-display text-2xl font-medium">Screenshots</h2>
-                  <span className="font-mono text-[10px] uppercase tracking-widest text-muted-foreground">
-                    [ from the README ]
-                  </span>
-                </div>
-              </Reveal>
-              <Reveal delay={0.05}>
-                <GalleryCarousel items={project.gallery} />
-              </Reveal>
-            </section>
           )}
 
           <div className="mt-20 grid grid-cols-1 gap-12 md:grid-cols-12">

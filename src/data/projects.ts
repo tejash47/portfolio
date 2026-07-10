@@ -1,15 +1,4 @@
 import kalaAiImg from "@/assets/kala-ai.jpg";
-import focus1 from "@/assets/projects/focus-1.png";
-import focus2 from "@/assets/projects/focus-2.png";
-import focus3 from "@/assets/projects/focus-3.png";
-import focus4 from "@/assets/projects/focus-4.png";
-import focus5 from "@/assets/projects/focus-5.png";
-import focus6 from "@/assets/projects/focus-6.png";
-import dcdHome from "@/assets/projects/dcd-home.png";
-import dcdDashboard from "@/assets/projects/dcd-dashboard.png";
-import dcdClass from "@/assets/projects/dcd-class.png";
-import dcdTeacher from "@/assets/projects/dcd-teacher.png";
-import dcdLogin from "@/assets/projects/dcd-login.png";
 
 export type Project = {
   slug: string;
@@ -24,7 +13,6 @@ export type Project = {
   links: { label: string; href: string }[];
   video?: { provider: "youtube"; id: string };
   highlights?: { label: string; value: string }[];
-  gallery?: { src: string; alt: string }[];
 };
 
 export const projects: Project[] = [
@@ -62,18 +50,16 @@ export const projects: Project[] = [
     tagline: "Chrome Manifest V3 extension that keeps students in the zone.",
     summary:
       "A Chrome browser extension that detects non-productive websites in real time and fires AI-powered motivational prompts to redirect attention and keep students in the zone.",
-    cover: focus1,
-    coverAlt: "Focus Shield dashboard screenshot",
+    cover: kalaAiImg,
+    coverAlt: "Focus Shield extension banner",
     eyebrow: "🏆 Chrome Extension · ExtenHack 2026",
-    tech: ["JavaScript", "HTML5", "CSS3", "Chrome APIs", "Manifest V3", "Chrome Storage API"],
+    tech: ["JavaScript", "HTML5", "CSS3", "Chrome APIs", "Manifest V3", "AI Tools"],
     bullets: [
-      "Blocks distracting websites with a customizable blocklist stored via the Chrome Storage API.",
-      "Built-in Pomodoro timer, scheduled break windows, and a Hardcore Focus Mode that prevents easy overrides.",
-      "Productivity analytics dashboard visualizes focused time, breaks, and blocked-site attempts.",
-      "Implemented Chrome Manifest V3 — background service workers and content scripts — for permission-efficient real-time monitoring. Built with a 3-member team at ExtenHack 2026.",
+      "Implemented Chrome Manifest V3 APIs — background service workers and content scripts — for real-time, permission-efficient site monitoring.",
+      "AI-generated motivational prompts injected dynamically when distraction sites are detected.",
+      "Zero external dependencies; extension size under 50KB for instant install. Built with a 3-member team at ExtenHack 2026.",
     ],
     links: [
-      { label: "GitHub Repo", href: "https://github.com/tejash47/focus-shield" },
       {
         label: "View Certificate",
         href: "https://drive.google.com/file/d/1misWefJ3Ms7vPUCJRvzQXMgTd2b67aVW/view",
@@ -84,48 +70,6 @@ export const projects: Project[] = [
       { label: "Dependencies", value: "0" },
       { label: "Team", value: "3 devs" },
       { label: "Event", value: "ExtenHack '26" },
-    ],
-    gallery: [
-      { src: focus1, alt: "Focus Shield main dashboard" },
-      { src: focus2, alt: "Focus Shield popup interface" },
-      { src: focus3, alt: "Focus Shield settings" },
-      { src: focus4, alt: "Focus Shield blocklist" },
-      { src: focus5, alt: "Focus Shield analytics" },
-      { src: focus6, alt: "Focus Shield focus mode" },
-    ],
-  },
-  {
-    slug: "digital-class-diary",
-    title: "Digital Class Diary — Classroom Management System",
-    tagline: "Full-stack MERN classroom platform for teachers and students.",
-    summary:
-      "A modern full-stack classroom management system that helps teachers run classrooms, assignments, attendance, and student records through a clean, responsive interface — built with React + TypeScript on the frontend and Node/Express + MongoDB Atlas on the backend.",
-    cover: dcdDashboard,
-    coverAlt: "Digital Class Diary teacher dashboard",
-    eyebrow: "MERN · Full-Stack",
-    tech: ["React", "TypeScript", "Vite", "Node.js", "Express.js", "MongoDB Atlas", "Mongoose", "Render"],
-    bullets: [
-      "Teacher dashboard for managing classrooms, assignments, attendance, and student records.",
-      "Secure JWT-based authentication with unique per-teacher classroom codes for student onboarding.",
-      "Responsive React + Vite frontend backed by an Express REST API and MongoDB Atlas via Mongoose.",
-      "Deployed end-to-end on Render with environment-driven configuration.",
-    ],
-    links: [
-      { label: "Live Demo", href: "https://digital-class-diary.onrender.com" },
-      { label: "GitHub Repo", href: "https://github.com/tejash47/digital-class-diary" },
-    ],
-    highlights: [
-      { label: "Stack", value: "MERN + TS" },
-      { label: "Auth", value: "JWT" },
-      { label: "DB", value: "Atlas" },
-      { label: "Deploy", value: "Render" },
-    ],
-    gallery: [
-      { src: dcdHome, alt: "Digital Class Diary home page" },
-      { src: dcdDashboard, alt: "Teacher dashboard" },
-      { src: dcdClass, alt: "Classroom view" },
-      { src: dcdTeacher, alt: "Unique teacher code" },
-      { src: dcdLogin, alt: "Login page" },
     ],
   },
 ];

@@ -44,38 +44,59 @@ export function Projects() {
       </Reveal>
 
       {/* Featured */}
-      <motion.article className="brutalist-border mb-12 flex flex-col gap-4 pl-8">
-        <Reveal className="space-y-2">
-          <p className="font-mono text-[10px] uppercase tracking-widest text-accent">
-            {featured.eyebrow}
-          </p>
-          <h3 className="font-display text-2xl font-medium text-foreground md:text-3xl">
-            {featured.title}
-          </h3>
-          <p className="max-w-[70ch] text-pretty leading-relaxed text-muted-foreground">
-            {featured.summary}
-          </p>
-        </Reveal>
-
-        <Stagger className="flex flex-wrap gap-2">
-          {featured.tech.map((t) => (
-            <motion.span key={t} variants={item}>
-              <Chip>{t}</Chip>
-            </motion.span>
-          ))}
-        </Stagger>
-
-        <Reveal>
+      <div className="mb-24 grid grid-cols-1 items-start gap-12 md:grid-cols-12">
+        <Reveal className="md:col-span-7">
           <Link
             to="/projects/$slug"
             params={{ slug: featured.slug }}
-            className="group inline-flex items-center gap-2 text-sm font-semibold text-accent"
+            className="group block overflow-hidden rounded-[min(1vw,12px)] ring-1 ring-black/5"
           >
-            View case study & demo video
-            <ArrowIcon />
+            <motion.img
+              src={featured.cover}
+              alt={featured.coverAlt}
+              width={1200}
+              height={800}
+              loading="lazy"
+              className="aspect-[16/10] w-full object-cover"
+              whileHover={{ scale: 1.04 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+            />
           </Link>
         </Reveal>
-      </motion.article>
+
+        <div className="brutalist-border flex flex-col gap-6 pl-8 md:col-span-5">
+          <Reveal className="space-y-2">
+            <p className="font-mono text-[10px] uppercase tracking-widest text-accent">
+              {featured.eyebrow}
+            </p>
+            <h3 className="font-display text-2xl font-medium text-foreground">
+              {featured.title}
+            </h3>
+            <p className="max-w-[46ch] text-pretty leading-relaxed text-muted-foreground">
+              {featured.summary}
+            </p>
+          </Reveal>
+
+          <Stagger className="flex flex-wrap gap-2">
+            {featured.tech.map((t) => (
+              <motion.span key={t} variants={item}>
+                <Chip>{t}</Chip>
+              </motion.span>
+            ))}
+          </Stagger>
+
+          <Reveal>
+            <Link
+              to="/projects/$slug"
+              params={{ slug: featured.slug }}
+              className="group inline-flex items-center gap-2 text-sm font-semibold text-accent"
+            >
+              View case study & demo video
+              <ArrowIcon />
+            </Link>
+          </Reveal>
+        </div>
+      </div>
 
       {/* Rest */}
       <Stagger className="grid grid-cols-1 gap-8">
