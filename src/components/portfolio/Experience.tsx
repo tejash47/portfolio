@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { Briefcase, GraduationCap, MapPin, Calendar, Award } from "lucide-react";
+import { Briefcase, GraduationCap, MapPin, Calendar, Award, CheckCircle2 } from "lucide-react";
 import { Reveal, Stagger, item } from "./Reveal";
 
 const experience = [
@@ -7,11 +7,12 @@ const experience = [
     period: "Jul 2026 – Present",
     role: "AI Full Stack Engineer Intern",
     company: "Small Fare Services Pvt. Ltd. · Remote",
+    type: "Internship",
     bullets: [
-      "Architecting and building end-to-end AI-integrated web applications with responsive React.js front-ends and Node.js/Express REST APIs.",
-      "Collaborating with designers and product managers to translate AI/ML research into intuitive, high-impact user experiences using Agile practices.",
-      "Debugging full-stack issues spanning data pipelines, API latency, and AI model inference to ensure reliable, production-ready deployments.",
-      "Managing source control and collaborative workflows with Git/GitHub across the full project lifecycle, from architecture to monitoring.",
+      "Architecting and shipping end-to-end AI-integrated web applications with responsive React.js frontends and Node.js/Express REST APIs.",
+      "Collaborating with cross-functional teams to translate AI model outputs into intuitive, high-impact user experiences following Agile principles.",
+      "Debugging full-stack bottlenecks across data pipelines, asynchronous API latency, and LLM inference response times for production stability.",
+      "Managing version control, code reviews, and deployment pipelines using Git/GitHub across the complete software development lifecycle.",
     ],
   },
 ];
@@ -20,112 +21,127 @@ const education = [
   {
     period: "2024 – 2028",
     institution: "Vignan's Institute of Information Technology",
-    detail: "B.Tech — Computer Science & Engineering",
-    location: "Visakhapatnam",
+    degree: "B.Tech — Computer Science & Engineering",
+    location: "Visakhapatnam, AP",
     score: "8.22 CGPA",
+    details:
+      "Focus: Data Structures & Algorithms, Object-Oriented Design, Web Architecture & Intelligent Systems.",
   },
   {
     period: "2022 – 2024",
-    institution: "Sri Chaitanya Jr. College",
-    detail: "Intermediate — SSC Board (MPC)",
-    location: "Visakhapatnam",
+    institution: "Sr Junior College",
+    degree: "Intermediate — State Board (MPC)",
+    location: "Visakhapatnam, AP",
     score: "815 / 1000",
+    details:
+      "Mathematics, Physics, and Chemistry foundation with rigorous competitive problem solving.",
   },
   {
     period: "2021 – 2022",
     institution: "St. Joseph's Secondary School",
-    detail: "ICSE — Class X",
-    location: "Visakhapatnam",
+    degree: "ICSE — Class X",
+    location: "Visakhapatnam, AP",
     score: "859 / 1000",
+    details: "Secondary school education with high academic distinction.",
   },
 ];
 
 export function Experience() {
   return (
-    <section id="experience" className="mx-auto mb-32 max-w-7xl px-6">
+    <section id="experience" className="mx-auto mb-28 max-w-7xl px-6">
+      {/* Experience Section */}
       <Reveal>
-        <div className="mb-12 flex items-baseline justify-between border-b border-foreground/5 pb-6">
-          <h2 className="flex items-center gap-3 font-display text-3xl font-medium tracking-tight">
-            <Briefcase className="size-6 text-accent" strokeWidth={1.75} />
-            Experience
+        <div className="mb-10 flex items-baseline justify-between border-b border-foreground/10 pb-4">
+          <h2 className="flex items-center gap-3 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            <Briefcase className="size-6 text-accent" />
+            Engineering Experience
           </h2>
-          <span className="font-mono text-sm text-muted-foreground/70">[ where I've worked ]</span>
+          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            [ Work History ]
+          </span>
         </div>
       </Reveal>
 
-      <Stagger className="space-y-12">
+      <Stagger className="space-y-6">
         {experience.map((e) => (
           <motion.div
             key={e.role}
             variants={item}
-            className="group grid grid-cols-1 gap-6 md:grid-cols-12"
+            className="group rounded-2xl border border-foreground/10 bg-card p-6 sm:p-8 transition-all hover:border-accent/40 shadow-sm"
           >
-            <div className="md:col-span-4">
-              <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground/70">
-                <Calendar className="size-3.5" strokeWidth={2} />
-                {e.period}
-              </p>
+            <div className="flex flex-col justify-between gap-2 sm:flex-row sm:items-center border-b border-foreground/5 pb-4 mb-5">
+              <div>
+                <span className="inline-block rounded-full bg-accent/10 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-accent mb-1.5">
+                  {e.type}
+                </span>
+                <h3 className="font-display text-xl font-bold text-foreground sm:text-2xl">
+                  {e.role}
+                </h3>
+                <p className="font-medium text-accent">{e.company}</p>
+              </div>
+
+              <div className="flex items-center gap-1.5 font-mono text-xs text-muted-foreground">
+                <Calendar className="size-3.5 text-accent" />
+                <span>{e.period}</span>
+              </div>
             </div>
-            <div className="brutalist-border relative pl-8 transition-all group-hover:border-l-accent md:col-span-8">
-              <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-accent ring-4 ring-background transition-transform group-hover:scale-125" />
-              <h3 className="font-display text-xl font-medium text-foreground">{e.role}</h3>
-              <p className="mt-1 font-mono text-sm text-accent">{e.company}</p>
-              <ul className="mt-4 space-y-2 text-muted-foreground">
-                {e.bullets.map((b) => (
-                  <li key={b} className="flex gap-3 leading-relaxed">
-                    <span className="mt-2 h-1 w-1 flex-shrink-0 rounded-full bg-accent" />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+
+            <ul className="space-y-3">
+              {e.bullets.map((b) => (
+                <li
+                  key={b}
+                  className="flex items-start gap-2.5 text-sm text-foreground/85 leading-relaxed"
+                >
+                  <CheckCircle2 className="mt-1 size-4 flex-shrink-0 text-accent" />
+                  <span>{b}</span>
+                </li>
+              ))}
+            </ul>
           </motion.div>
         ))}
       </Stagger>
 
-      <div id="education" className="mt-24">
+      {/* Education Section */}
+      <div id="education" className="mt-20">
         <Reveal>
-          <div className="mb-12 flex items-baseline justify-between border-b border-foreground/5 pb-6">
-            <h2 className="flex items-center gap-3 font-display text-3xl font-medium tracking-tight">
-              <GraduationCap className="size-6 text-accent" strokeWidth={1.75} />
-              Education
+          <div className="mb-10 flex items-baseline justify-between border-b border-foreground/10 pb-4">
+            <h2 className="flex items-center gap-3 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+              <GraduationCap className="size-6 text-accent" />
+              Academic Background
             </h2>
-            <span className="font-mono text-sm text-muted-foreground/70">
-              [ academic background ]
+            <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+              [ Education ]
             </span>
           </div>
         </Reveal>
-        <Stagger className="space-y-10">
-          {education.map((e) => (
+
+        <Stagger className="grid grid-cols-1 gap-5 md:grid-cols-3">
+          {education.map((edu) => (
             <motion.div
-              key={e.institution}
+              key={edu.institution}
               variants={item}
-              whileHover={{ x: 4 }}
-              transition={{ type: "spring", stiffness: 300, damping: 24 }}
-              className="group grid grid-cols-1 gap-6 md:grid-cols-12"
+              whileHover={{ y: -4 }}
+              className="flex flex-col justify-between rounded-xl border border-foreground/10 bg-card p-6 transition-all hover:border-accent/40 shadow-sm"
             >
-              <div className="md:col-span-4">
-                <p className="inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-muted-foreground/70">
-                  <Calendar className="size-3.5" strokeWidth={2} />
-                  {e.period}
-                </p>
-              </div>
-              <div className="brutalist-border relative pl-8 transition-all group-hover:border-l-accent md:col-span-8">
-                <span className="absolute -left-[7px] top-1 h-3 w-3 rounded-full bg-accent ring-4 ring-background transition-transform group-hover:scale-125" />
-                <h3 className="font-display text-xl font-medium text-foreground">
-                  {e.institution}
-                </h3>
-                <p className="mt-1 text-muted-foreground">{e.detail}</p>
-                <div className="mt-3 flex flex-wrap items-center gap-4 text-sm">
-                  <span className="inline-flex items-center gap-1.5 font-mono text-accent">
-                    <Award className="size-3.5" strokeWidth={2} />
-                    {e.score}
-                  </span>
-                  <span className="inline-flex items-center gap-1.5 font-mono text-muted-foreground/80">
-                    <MapPin className="size-3.5" strokeWidth={2} />
-                    {e.location}
+              <div>
+                <div className="flex items-center justify-between font-mono text-xs text-muted-foreground mb-2">
+                  <span>{edu.period}</span>
+                  <span className="inline-flex items-center gap-1 font-semibold text-accent">
+                    <Award className="size-3.5" />
+                    {edu.score}
                   </span>
                 </div>
+
+                <h3 className="font-display text-lg font-bold text-foreground">
+                  {edu.institution}
+                </h3>
+                <p className="mt-1 text-xs font-semibold text-accent-secondary">{edu.degree}</p>
+                <p className="mt-3 text-xs leading-relaxed text-muted-foreground">{edu.details}</p>
+              </div>
+
+              <div className="mt-4 pt-4 border-t border-foreground/5 flex items-center gap-1 font-mono text-[11px] text-muted-foreground">
+                <MapPin className="size-3" />
+                <span>{edu.location}</span>
               </div>
             </motion.div>
           ))}

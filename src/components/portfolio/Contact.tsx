@@ -1,49 +1,162 @@
-const links = [
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/kamada-sri-hari-siva-tejash" },
-  { label: "CodeChef", href: "https://www.codechef.com/users/tejash_47" },
-  { label: "GitHub", href: "https://github.com/tejash47" },
+import { useState } from "react";
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Copy,
+  Check,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Code,
+  Send,
+} from "lucide-react";
+import { Reveal } from "./Reveal";
+
+const socialLinks = [
+  {
+    name: "LinkedIn",
+    href: "https://www.linkedin.com/in/kamada-sri-hari-siva-tejash",
+    handle: "kamada-sri-hari-siva-tejash",
+    icon: Linkedin,
+  },
+  {
+    name: "GitHub",
+    href: "https://github.com/tejash47",
+    handle: "tejash47",
+    icon: Github,
+  },
+  {
+    name: "CodeChef",
+    href: "https://www.codechef.com/users/tejash_47",
+    handle: "tejash_47",
+    icon: Code,
+  },
 ];
 
 export function Contact() {
+  const [copied, setCopied] = useState(false);
+  const email = "tejesh.kamada47@gmail.com";
+  const phone = "+91 7396480220";
+
+  const handleCopyEmail = () => {
+    navigator.clipboard.writeText(email);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
   return (
-    <section id="contact" className="mx-auto mb-24 max-w-7xl px-6">
-      <div className="grid grid-cols-1 gap-12 md:grid-cols-12">
-        <div className="md:col-span-5">
-          <p className="font-mono text-xs uppercase tracking-widest text-accent">Let's Connect</p>
-          <h2 className="mt-4 font-display text-4xl font-medium leading-tight tracking-tight md:text-5xl">
-            Open to Internships <br />& Collaborations
+    <section id="contact" className="mx-auto mb-20 max-w-7xl px-6">
+      <Reveal>
+        <div className="mb-10 flex items-baseline justify-between border-b border-foreground/10 pb-4">
+          <h2 className="flex items-center gap-3 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            <Mail className="size-6 text-accent" />
+            Let's Connect
           </h2>
-          <p className="mt-6 max-w-[42ch] text-pretty leading-relaxed text-muted-foreground">
-            I'm actively looking for software engineering internship opportunities. Whether you
-            have a project idea, an internship opening, or just want to talk tech — feel free to
-            reach out.
-          </p>
+          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            [ Contact ]
+          </span>
         </div>
-        <div className="brutalist-border flex flex-col gap-8 pl-8 md:col-span-7">
-          <a
-            href="mailto:tejesh.kamada47@gmail.com"
-            className="font-display text-2xl font-medium text-foreground transition-colors hover:text-accent"
-          >
-            tejesh.kamada47@gmail.com
-          </a>
-          <a
-            href="tel:+917396480220"
-            className="font-mono text-sm text-muted-foreground transition-colors hover:text-foreground"
-          >
-            +91 7396480220
-          </a>
-          <div className="flex flex-wrap gap-6">
-            {links.map((l) => (
+      </Reveal>
+
+      <div className="grid grid-cols-1 gap-10 md:grid-cols-12 items-start">
+        {/* Left Pitch */}
+        <div className="space-y-4 md:col-span-5">
+          <h3 className="font-display text-3xl font-extrabold tracking-tight text-foreground sm:text-4xl">
+            Open to Internships <br />& Engineering Roles
+          </h3>
+          <p className="text-base text-muted-foreground leading-relaxed">
+            I am actively seeking software engineering and AI full-stack opportunities. Whether you
+            have an internship opening, a collaboration idea, or want to discuss architecture — feel
+            free to reach out.
+          </p>
+
+          <div className="pt-2 flex flex-col gap-3 font-mono text-xs">
+            <div className="flex items-center gap-2 text-muted-foreground">
+              <MapPin className="size-4 text-accent" />
+              <span>Visakhapatnam, Andhra Pradesh, India</span>
+            </div>
+            <div className="flex items-center gap-2 text-emerald-500 font-semibold">
+              <span className="size-2 rounded-full bg-emerald-500 animate-pulse" />
+              <span>Available for immediate onboarding (Remote / Hybrid / On-site)</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Right Contact Card & Links */}
+        <div className="rounded-2xl border border-foreground/10 bg-card p-6 sm:p-8 space-y-6 md:col-span-7 shadow-sm">
+          {/* Email Quick Copy */}
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 rounded-xl border border-foreground/10 bg-card-subtle p-4">
+            <div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-1">
+                Direct Email
+              </span>
               <a
-                key={l.label}
-                href={l.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-semibold uppercase tracking-widest text-foreground/70 transition-colors hover:text-accent"
+                href={`mailto:${email}`}
+                className="font-display text-lg sm:text-xl font-bold text-foreground hover:text-accent transition-colors"
               >
-                {l.label} →
+                {email}
               </a>
-            ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={handleCopyEmail}
+              className="inline-flex items-center justify-center gap-1.5 rounded-lg border border-foreground/15 bg-card px-3.5 py-2 text-xs font-semibold text-foreground hover:border-accent hover:text-accent transition-colors shrink-0"
+              aria-label="Copy email address"
+            >
+              {copied ? (
+                <>
+                  <Check className="size-3.5 text-emerald-500" />
+                  <span className="text-emerald-500">Copied!</span>
+                </>
+              ) : (
+                <>
+                  <Copy className="size-3.5" />
+                  <span>Copy</span>
+                </>
+              )}
+            </button>
+          </div>
+
+          {/* Phone */}
+          <div className="flex items-center justify-between rounded-xl border border-foreground/10 bg-card-subtle p-4">
+            <div>
+              <span className="font-mono text-[10px] font-bold uppercase tracking-wider text-muted-foreground block mb-1">
+                Phone / WhatsApp
+              </span>
+              <a
+                href={`tel:${phone}`}
+                className="font-mono text-base font-semibold text-foreground hover:text-accent transition-colors"
+              >
+                {phone}
+              </a>
+            </div>
+          </div>
+
+          {/* Social Links */}
+          <div>
+            <span className="font-mono text-xs font-bold uppercase tracking-wider text-muted-foreground block mb-3">
+              Coding & Professional Profiles
+            </span>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+              {socialLinks.map((s) => {
+                const Icon = s.icon;
+                return (
+                  <a
+                    key={s.name}
+                    href={s.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-2.5 rounded-xl border border-foreground/10 bg-card p-3 text-xs font-semibold text-foreground transition-all hover:border-accent hover:text-accent shadow-sm"
+                  >
+                    <Icon className="size-4 text-accent" />
+                    <span>{s.name}</span>
+                    <ExternalLink className="size-3 ml-auto text-muted-foreground" />
+                  </a>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>
@@ -52,23 +165,25 @@ export function Contact() {
 }
 
 export function Footer() {
+  const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-foreground/5 py-12">
-      <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-6 md:flex-row md:items-center">
-        <div className="flex flex-col gap-1">
-          <p className="font-mono text-xs text-muted-foreground/70">
-            Last build · {new Date().getFullYear()}
+    <footer className="border-t border-foreground/10 bg-card py-10">
+      <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 md:flex-row">
+        <div className="flex flex-col items-center gap-1 md:items-start">
+          <p className="font-display text-sm font-bold text-foreground">
+            Kamada Sri Hari Siva Tejash
           </p>
-          <p className="text-sm font-medium">
-            © {new Date().getFullYear()} Kamada Sri Hari Siva Tejash.
+          <p className="font-mono text-xs text-muted-foreground">
+            AI Full-Stack Engineer · © {year} All rights reserved.
           </p>
         </div>
-        <div className="flex gap-6">
+
+        <div className="flex items-center gap-6 font-mono text-xs text-muted-foreground">
           <a
             href="https://github.com/tejash47"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-muted-foreground hover:text-accent"
+            className="hover:text-accent transition-colors"
           >
             GitHub
           </a>
@@ -76,7 +191,7 @@ export function Footer() {
             href="https://www.linkedin.com/in/kamada-sri-hari-siva-tejash"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-muted-foreground hover:text-accent"
+            className="hover:text-accent transition-colors"
           >
             LinkedIn
           </a>
@@ -84,9 +199,16 @@ export function Footer() {
             href="https://www.codechef.com/users/tejash_47"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-sm font-medium text-muted-foreground hover:text-accent"
+            className="hover:text-accent transition-colors"
           >
             CodeChef
+          </a>
+          <a
+            href="/Kamada Tejash.docx"
+            download="Kamada_Tejash_Resume.docx"
+            className="hover:text-accent transition-colors"
+          >
+            Resume
           </a>
         </div>
       </div>

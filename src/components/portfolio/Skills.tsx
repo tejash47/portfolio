@@ -6,75 +6,142 @@ import {
   Database,
   Wrench,
   Brain,
+  Cpu,
+  Sparkles,
   type LucideIcon,
 } from "lucide-react";
-import { Stagger, item } from "./Reveal";
+import { Reveal, Stagger, item } from "./Reveal";
 
-const groups: { title: string; icon: LucideIcon; items: string[] }[] = [
-  { title: "Languages", icon: Code2, items: ["Java", "Python", "C", "C++", "JavaScript", "SQL"] },
-  { title: "Frontend", icon: Layout, items: ["React.js", "Next.js", "HTML5", "CSS3"] },
-  { title: "Backend", icon: Server, items: ["Node.js", "Express.js", "REST APIs"] },
-  { title: "Databases", icon: Database, items: ["MongoDB", "SQL"] },
+type SkillGroup = {
+  title: string;
+  icon: LucideIcon;
+  color: string;
+  items: string[];
+};
+
+const groups: SkillGroup[] = [
   {
-    title: "Developer Tools",
-    icon: Wrench,
-    items: ["Git", "GitHub", "Postman", "VS Code", "Vercel"],
+    title: "AI & Intelligent Systems",
+    icon: Cpu,
+    color: "text-indigo-400 bg-indigo-500/10 border-indigo-500/20",
+    items: [
+      "Generative AI & LLMs",
+      "Multi-AI Fallback Cascades",
+      "Prompt Engineering",
+      "Babel AST Code Analysis",
+      "NLP APIs",
+      "Autonomous Agents",
+    ],
   },
-  { title: "Core CS", icon: Brain, items: ["DSA", "OOP", "DBMS", "Operating Systems"] },
+  {
+    title: "Languages",
+    icon: Code2,
+    color: "text-accent bg-accent/10 border-accent/20",
+    items: ["Java", "Python", "C", "C++ (OOP & STL)", "JavaScript (ES6+)", "TypeScript", "SQL"],
+  },
+  {
+    title: "Frontend Engineering",
+    icon: Layout,
+    color: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
+    items: ["React.js", "Next.js", "Vite", "Tailwind CSS", "HTML5", "CSS3", "Framer Motion"],
+  },
+  {
+    title: "Backend & APIs",
+    icon: Server,
+    color: "text-blue-400 bg-blue-500/10 border-blue-500/20",
+    items: [
+      "Node.js",
+      "Express.js",
+      "RESTful API Architecture",
+      "JWT Authentication",
+      "Dynamic Port Probing",
+      "Zero-Secret Redaction",
+    ],
+  },
+  {
+    title: "Databases & Storage",
+    icon: Database,
+    color: "text-amber-400 bg-amber-500/10 border-amber-500/20",
+    items: ["MongoDB & Mongoose", "Supabase (PostgreSQL)", "SQL", "Chrome Storage API"],
+  },
+  {
+    title: "Dev Tools & Cloud",
+    icon: Wrench,
+    color: "text-purple-400 bg-purple-500/10 border-purple-500/20",
+    items: [
+      "Git & GitHub",
+      "Vercel Deployment",
+      "Render",
+      "Postman",
+      "Chrome Manifest V3",
+      "VS Code",
+    ],
+  },
+  {
+    title: "Core Computer Science",
+    icon: Brain,
+    color: "text-rose-400 bg-rose-500/10 border-rose-500/20",
+    items: [
+      "Data Structures & Algorithms",
+      "Object-Oriented Programming (OOP)",
+      "Database Management (DBMS)",
+      "Operating Systems Concepts",
+    ],
+  },
 ];
 
 export function Skills() {
   return (
-    <section id="skills" className="mx-auto mb-32 max-w-7xl px-6">
-      <div className="relative overflow-hidden rounded-2xl bg-panel p-8 ring-1 ring-black/5 md:p-12">
-        <motion.div
-          aria-hidden
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 0.15 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.2 }}
-          className="pointer-events-none absolute -right-16 -top-16 h-64 w-64 rounded-full bg-accent blur-3xl"
-        />
-        <div className="relative mb-10 flex items-baseline justify-between">
-          <h2 className="font-display text-2xl font-medium tracking-tight text-panel-foreground">
+    <section id="skills" className="mx-auto mb-28 max-w-7xl px-6">
+      <Reveal>
+        <div className="mb-10 flex items-baseline justify-between border-b border-foreground/10 pb-4">
+          <h2 className="flex items-center gap-3 font-display text-2xl font-bold tracking-tight text-foreground md:text-3xl">
+            <Sparkles className="size-6 text-accent" />
             Technical Skills
           </h2>
-          <span className="font-mono text-xs text-panel-foreground/40">[ what I work with ]</span>
+          <span className="font-mono text-xs uppercase tracking-wider text-muted-foreground">
+            [ Core Proficiencies ]
+          </span>
         </div>
-        <Stagger className="relative grid grid-cols-1 gap-10 md:grid-cols-2 lg:grid-cols-3">
-          {groups.map((g) => {
-            const Icon = g.icon;
-            return (
-              <motion.div
-                key={g.title}
-                variants={item}
-                whileHover={{ y: -4 }}
-                className="group space-y-4 rounded-lg p-4 transition-colors hover:bg-white/[0.03]"
-              >
-                <div className="flex items-center gap-3">
-                  <span className="inline-flex size-9 items-center justify-center rounded-md bg-accent/10 text-accent ring-1 ring-accent/20 transition-transform group-hover:scale-110">
-                    <Icon className="size-4" strokeWidth={2} />
+      </Reveal>
+
+      <Stagger className="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {groups.map((g) => {
+          const Icon = g.icon;
+          return (
+            <motion.div
+              key={g.title}
+              variants={item}
+              whileHover={{ y: -4 }}
+              className="group flex flex-col justify-between rounded-xl border border-foreground/10 bg-card p-5 transition-all hover:border-accent/40 shadow-sm"
+            >
+              <div>
+                <div className="flex items-center gap-3 pb-4 mb-4 border-b border-foreground/5">
+                  <span
+                    className={`flex size-9 items-center justify-center rounded-lg border ${g.color}`}
+                  >
+                    <Icon className="size-4.5" strokeWidth={2} />
                   </span>
-                  <h4 className="font-display text-sm font-semibold uppercase tracking-widest text-panel-foreground/60">
+                  <h3 className="font-display text-sm font-bold uppercase tracking-wider text-foreground">
                     {g.title}
-                  </h4>
+                  </h3>
                 </div>
-                <div className="flex flex-wrap gap-x-4 gap-y-3">
-                  {g.items.map((i) => (
-                    <motion.span
-                      key={i}
-                      whileHover={{ y: -2, color: "var(--color-accent)" }}
-                      className="cursor-default text-lg font-medium text-panel-foreground"
+
+                <div className="flex flex-wrap gap-1.5">
+                  {g.items.map((tech) => (
+                    <span
+                      key={tech}
+                      className="rounded-md border border-foreground/10 bg-card-subtle px-2.5 py-1 font-mono text-xs text-foreground/80 transition-colors group-hover:border-foreground/20"
                     >
-                      {i}
-                    </motion.span>
+                      {tech}
+                    </span>
                   ))}
                 </div>
-              </motion.div>
-            );
-          })}
-        </Stagger>
-      </div>
+              </div>
+            </motion.div>
+          );
+        })}
+      </Stagger>
     </section>
   );
 }

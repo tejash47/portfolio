@@ -7,16 +7,19 @@ export function GalleryCarousel({ items }: { items: Item[] }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [index, setIndex] = useState(0);
 
-  const scrollTo = useCallback((i: number) => {
-    const track = trackRef.current;
-    if (!track) return;
-    const clamped = Math.max(0, Math.min(items.length - 1, i));
-    const child = track.children[clamped] as HTMLElement | undefined;
-    if (child) {
-      track.scrollTo({ left: child.offsetLeft - track.offsetLeft, behavior: "smooth" });
-    }
-    setIndex(clamped);
-  }, [items.length]);
+  const scrollTo = useCallback(
+    (i: number) => {
+      const track = trackRef.current;
+      if (!track) return;
+      const clamped = Math.max(0, Math.min(items.length - 1, i));
+      const child = track.children[clamped] as HTMLElement | undefined;
+      if (child) {
+        track.scrollTo({ left: child.offsetLeft - track.offsetLeft, behavior: "smooth" });
+      }
+      setIndex(clamped);
+    },
+    [items.length],
+  );
 
   useEffect(() => {
     const track = trackRef.current;
@@ -32,7 +35,10 @@ export function GalleryCarousel({ items }: { items: Item[] }) {
         children.forEach((c, i) => {
           const mid = c.offsetLeft - track.offsetLeft + c.clientWidth / 2;
           const d = Math.abs(mid - center);
-          if (d < bestDist) { bestDist = d; best = i; }
+          if (d < bestDist) {
+            bestDist = d;
+            best = i;
+          }
         });
         setIndex(best);
       });
@@ -97,7 +103,11 @@ export function GalleryCarousel({ items }: { items: Item[] }) {
             className="flex size-10 items-center justify-center rounded-full border border-foreground/15 text-foreground transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-30"
           >
             <svg viewBox="0 0 16 16" fill="currentColor" className="size-4">
-              <path fillRule="evenodd" d="M14 8a.75.75 0 0 1-.75.75H4.56l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 1.06L4.56 7.25h8.69A.75.75 0 0 1 14 8Z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M14 8a.75.75 0 0 1-.75.75H4.56l3.22 3.22a.75.75 0 1 1-1.06 1.06l-4.5-4.5a.75.75 0 0 1 0-1.06l4.5-4.5a.75.75 0 0 1 1.06 1.06L4.56 7.25h8.69A.75.75 0 0 1 14 8Z"
+                clipRule="evenodd"
+              />
             </svg>
           </button>
           <button
@@ -108,7 +118,11 @@ export function GalleryCarousel({ items }: { items: Item[] }) {
             className="flex size-10 items-center justify-center rounded-full border border-foreground/15 text-foreground transition hover:border-accent hover:text-accent disabled:cursor-not-allowed disabled:opacity-30"
           >
             <svg viewBox="0 0 16 16" fill="currentColor" className="size-4">
-              <path fillRule="evenodd" d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z" clipRule="evenodd" />
+              <path
+                fillRule="evenodd"
+                d="M2 8a.75.75 0 0 1 .75-.75h8.69L8.22 4.03a.75.75 0 0 1 1.06-1.06l4.5 4.5a.75.75 0 0 1 0 1.06l-4.5 4.5a.75.75 0 0 1-1.06-1.06l3.22-3.22H2.75A.75.75 0 0 1 2 8Z"
+                clipRule="evenodd"
+              />
             </svg>
           </button>
         </div>
